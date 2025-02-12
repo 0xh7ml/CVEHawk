@@ -1,3 +1,5 @@
+![CVEHawk](../assets/cvehawk.png?raw=true)
+
 # CVEHawk
 It's a Python script that searches for publicly available Proof-of-Concept (PoC) exploits for a given Common Vulnerabilities and Exposures (CVE) identifier. When a new CVE is published by NIST, it is useful to locate exploit code for security research, pentesting, and vulnerability management
 
