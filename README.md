@@ -31,7 +31,7 @@ HELP:
     -h 
 ```
 
-## ToDO
+## ToDo
 
 - [x] Take CVE ID as input
 - [x] Search PoCs related to that CVE from the publicly available sources. i.e: Github, ExploitDB, Twitter, OpenAI’s GPT
