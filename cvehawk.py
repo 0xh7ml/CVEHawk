@@ -62,7 +62,7 @@ async def fetch_gh_poc(cve_id: str, session: aiohttp.ClientSession):
                 return {
                     "source": "GitHub",
                     "title": f"Exploits for {cve_id}",
-                    "PoCs": poc_urls
+                    "urls": poc_urls
                 }
             else:
                 return None
@@ -102,7 +102,7 @@ async def fetch_exploitdb_poc(cve_id: str, session: aiohttp.ClientSession):
             return {
                 "source": "Exploit DB",
                 "title": f"Exploits for {cve_id}",
-                "PoCs": exploit_urls
+                "urls": exploit_urls
             }
         else:
             return None
@@ -141,7 +141,7 @@ async def fetch_other_sources_poc(cve_id: str, session: aiohttp.ClientSession):
             return {
                 "source": "Others",
                 "title": f"Exploits for {cve_id}",
-                "PoCs": report_urls
+                "urls": report_urls
             }
         else:
             return None
@@ -155,7 +155,10 @@ async def fetch_other_sources_poc(cve_id: str, session: aiohttp.ClientSession):
 
 # Main function
 async def main(cve_id: str):
-    result = []
+    result = {
+        "CVE": cve_id,
+        "PoCs": []
+    }
     
     # Use a single session for all HTTP requests
     async with aiohttp.ClientSession() as session:
@@ -173,11 +176,11 @@ async def main(cve_id: str):
         
         # Update the result dictionary
         if gh_poc:
-            result.append(gh_poc)
+            result["PoCs"].append(gh_poc)
         if exploitdb_poc:
-            result.append(exploitdb_poc)
+            result["PoCs"].append(exploitdb_poc)
         if other_sources_poc:
-            result.append(other_sources_poc)
+            result["PoCs"].append(other_sources_poc)
     
     # Print the final result as JSON
     if result != []:
